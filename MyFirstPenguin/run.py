@@ -34,12 +34,13 @@ def findPowerUp(body):
         if powerUp[Type] == "strength" and maxHealth:
                 continue
             
+        return RETREAT
+    
         dist = calcDistance(body["you"], powerUp)
         if dist > closest:
             closest_dist = dist
             closest = powerUp
     
-    return RETREAT
 
     return moveTowardsPoint(body, closest["x"], closest["y"])        
     
