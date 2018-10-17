@@ -3,6 +3,7 @@ import json
 import random
 import math
 from pickletools import dis
+from math import sqrt
 
 ROTATE_LEFT = "rotate-left"
 ROTATE_RIGHT = "rotate-right"
@@ -18,10 +19,10 @@ MOVE_LEFT = {"top" : ROTATE_LEFT, "bottom" : ROTATE_RIGHT, "right" : ROTATE_RIGH
 
 
 def calcDistance(a, b):
-    return (abs(a["x"] - b["x"]) + abs(a["y"]- b["y"]))
+    return sqrt((a["x"] - b["x"])**2 + (a["y"]- b["y"])**2)
 
 def findPowerUp(body):
-    print("hello")
+    
     powerUps = body["bonusTiles"]
     maxHealth = False
     if body["you"]["strength"] == 300:
@@ -35,6 +36,10 @@ def findPowerUp(body):
     
 
     closest_dist = calcDistance(closest, body["you"])
+
+    if closest["type"] is "strength" and maxHealth:
+        return SHOOT
+
 
     for powerUp in powerUps:
         if powerUp["type"] is "strength" and maxHealth:
