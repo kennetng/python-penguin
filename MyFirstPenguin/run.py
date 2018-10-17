@@ -2,6 +2,7 @@ import os
 import json
 import random
 import math
+from pickletools import dis
 
 ROTATE_LEFT = "rotate-left"
 ROTATE_RIGHT = "rotate-right"
@@ -15,11 +16,52 @@ MOVE_DOWN =  {"top" : ROTATE_LEFT, "bottom" : ADVANCE, "right" : ROTATE_RIGHT ,"
 MOVE_RIGHT = {"top" : ROTATE_RIGHT, "bottom" : ROTATE_LEFT, "right" : ADVANCE ,"left" : ROTATE_LEFT }
 MOVE_LEFT = {"top" : ROTATE_LEFT, "bottom" : ROTATE_RIGHT, "right" : ROTATE_RIGHT,"left" : ADVANCE }
 
-def doesCellContainWall(walls, x, y):
-    for wall in walls:
-        if wall["x"] == x and wall["y"] == y:
-            return True
-    return False
+
+def calcDistance(a, b):
+    return abs(a["x"] - b["x"]) + abs(a["y"]- b["y"])
+
+def findPowerUp(body):
+    powerUps = body["bonusTiles"]
+    maxHealth = False
+    if body["you"]["strength"] == 300:
+        maxHealth = True
+        
+    closest = powerUps[0]
+    closest_dist = calcDistance(powerUps[0], body["you"])
+    
+    for powerUp in powerUps:
+        if powerUp[Type] == "strength" and maxHealth:
+                continue
+            
+        dist = calcDistance(body["you"], powerUp)
+        if dist > closest:
+            closest_dist = dist
+            closest = powerUp
+    
+    return moveTowardsPoint(body, closest["x"], closest["y"])        
+    
+        
+    
+    
+def moveTowardsPoint(body, pointX, pointY):
+    penguinPositionX = body["you"]["x"]
+    penguinPositionY = body["you"]["y"]
+    plannedAction = PASS
+    bodyDirection = body["you"]["direction"]
+
+    if penguinPositionX < pointX:
+        plannedAction = MOVE_RIGHT[bodyDirection]
+    elif penguinPositionX > pointX:
+        plannedAction = MOVE_LEFT[bodyDirection]
+    elif penguinPositionY < pointY:
+        plannedAction = MOVE_DOWN[bodyDirection]
+    elif penguinPositionY > pointY:
+        plannedAction = MOVE_UP[bodyDirection]
+
+    if plannedAction == ADVANCE and wallInFrontOfPenguin(body):
+        plannedAction = SHOOT
+        
+    return plannedAction
 
 def wallInFrontOfPenguin(body):
     xValueToCheckForWall = body["you"]["x"]
@@ -36,34 +78,8 @@ def wallInFrontOfPenguin(body):
         xValueToCheckForWall += 1
     return doesCellContainWall(body["walls"], xValueToCheckForWall, yValueToCheckForWall)
 
-def moveTowardsPoint(body, pointX, pointY):
-    penguinPositionX = body["you"]["x"]
-    penguinPositionY = body["you"]["y"]
-    plannedAction = PASS
-    bodyDirection = body["you"]["direction"]
-
-    if penguinPositionX < pointX:
-        plannedAction =  MOVE_RIGHT[bodyDirection]
-    elif penguinPositionX > pointX:
-        plannedAction = MOVE_LEFT[bodyDirection]
-    elif penguinPositionY < pointY:
-        plannedAction = MOVE_DOWN[bodyDirection]
-    elif penguinPositionY > pointY:
-        plannedAction = MOVE_UP[bodyDirection]
-
-    if plannedAction == ADVANCE and wallInFrontOfPenguin(body):
-        plannedAction = SHOOT
-    return plannedAction
-
-def moveTowardsCenterOfMap(body):
-    centerPointX = math.floor(body["mapWidth"] / 2)
-    centerPointY = math.floor(body["mapHeight"] / 2)
-    return moveTowardsPoint(body, centerPointX, centerPointY)
-
 def chooseAction(body):
-    action = PASS
-    action = moveTowardsCenterOfMap(body)
-    return action
+    return findPowerUp(body)
 
 env = os.environ
 req_params_query = env['REQ_PARAMS_QUERY']
