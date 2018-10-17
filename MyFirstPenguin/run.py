@@ -22,13 +22,14 @@ def calcDistance(a, b):
     return abs(a["x"] - b["x"]) + abs(a["y"] - b["y"])
 
 def MoveToClosest(body, tiles):
+    
     if len(tiles) == 0:
         return None
     
     
-    
     closest = tiles.pop()
-        
+    
+    
     closest_dist = calcDistance(body["you"], closest)
 
 
@@ -43,7 +44,7 @@ def MoveToClosest(body, tiles):
     return moveTowardsPoint(body, closest["x"], closest["y"])    
 
 def findPowerUp(body):
-    return MoveToClosest(body, bode["bonusTiles"])
+    return MoveToClosest(body, body["bonusTiles"])
     
         
     
@@ -94,8 +95,6 @@ def fireInRange(body):
     pass
 
 def chooseAction(body):
-    if(len(body["fire"]) != 0):
-        move = fireInRange(body)
     move = findPowerUp(body)
     return move
 
