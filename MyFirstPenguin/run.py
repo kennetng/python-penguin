@@ -5,6 +5,7 @@ import math
 from pickletools import dis
 from math import sqrt
 from fileinput import close
+from tkinter.constants import LEFT
 
 ROTATE_LEFT = "rotate-left"
 ROTATE_RIGHT = "rotate-right"
@@ -95,7 +96,20 @@ def doesCellContainWall(walls, x, y):
     return False
 
 def fireInRange(body):
-    pass
+    closest = MoveToClosest(body, body["fire"])
+    if closest is None:
+        return None
+    
+    move =  moveTowardsPoint(body, closest["x"], closest["y"])
+
+    if move is MOVE_UP:
+        return  MOVE_DOWN
+    if move is MOVE_DOWN:
+        return  MOVE_UP
+    if move is MOVE_LEFT:
+        return  MOVE_RIGHT
+    if move is MOVE_RIGHT:
+        return  MOVE_LEFT
 
 def chooseAction(body):
     if len(body["fire"]) != 0:
