@@ -63,9 +63,7 @@ def moveTowardsPoint(body, pointX, pointY):
 
     if plannedAction == ADVANCE and wallInFrontOfPenguin(body):
         plannedAction = SHOOT
-        
-    return SHOOT
-        
+                
     return plannedAction
 
 def wallInFrontOfPenguin(body):
