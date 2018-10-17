@@ -22,8 +22,11 @@ def calcDistance(a, b):
     return abs(a["x"] - b["x"]) + abs(a["y"] - b["y"])
 
 def MoveToClosest(body, tiles):
+    return  SHOOT
     if len(tiles) == 0:
         return None
+    
+    
     
     closest = tiles.pop()
         
