@@ -31,6 +31,7 @@ def findPowerUp(body):
     
 
     for powerUp in powerUps:
+        print("esd")
         if powerUp["type"] is "strength" and maxHealth:
                 continue
         
