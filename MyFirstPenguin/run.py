@@ -92,12 +92,31 @@ def doesCellContainWall(walls, x, y):
     return False
 
 def fireInRange(body):
-    pass
+    move = moveTowardsPoint(body, pointX, pointY)
+    
+    if move is MOVE_DOWN:
+        return MOVE_UP
+    if move is MOVE_UP:
+        return MOVE_DOWN
+    if move is MOVE_LEFT:
+        return MOVE_RIGHT
+    if move is MOVE_LEFT:
+        return MOVE_RIGHT
+    
+    
+
+def nothinToDo(body):
+    return PASS
 
 def chooseAction(body):
     if(len(body["fire"]) != 0):
         move = fireInRange(body)
-    move = findPowerUp(body)
+    else:
+        move = findPowerUp(body)
+    
+    if move is None:
+        return nothinToDo(body)
+        
     return move
 
 env = os.environ
