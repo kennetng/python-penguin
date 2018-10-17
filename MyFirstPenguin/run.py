@@ -23,13 +23,14 @@ def calcDistance(a, b):
 def findPowerUp(body):
     powerUps = body["bonusTiles"]
     maxHealth = False
-    return SHOOT
     if body["you"]["strength"] == 300:
         maxHealth = True
         
     closest = powerUps[0]
     closest_dist = calcDistance(powerUps[0], body["you"])
     
+    return SHOOT
+
     for powerUp in powerUps:
         if powerUp[Type] == "strength" and maxHealth:
                 continue
