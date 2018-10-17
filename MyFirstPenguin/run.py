@@ -25,6 +25,7 @@ def findPowerUp(body):
     
     powerUps = body["bonusTiles"]
     maxHealth = False
+    
     if body["you"]["strength"] == 300:
         maxHealth = True
     
