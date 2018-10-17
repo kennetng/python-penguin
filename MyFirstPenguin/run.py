@@ -29,6 +29,9 @@ def findPowerUp(body):
         maxHealth = True
     
     
+    if len(powerUps) == 0:
+        return None
+    
     closest = powerUps.pop()
     
     while closest["type"] is "strength" and maxHealth and len(powerUps) != 0:
@@ -38,7 +41,7 @@ def findPowerUp(body):
     closest_dist = calcDistance(body["you"], closest)
 
     if closest["type"] is "strength" and maxHealth:
-        return SHOOT
+        return None
 
 
     for powerUp in powerUps:
@@ -100,7 +103,10 @@ def doesCellContainWall(walls, x, y):
     return False
 
 def chooseAction(body):
-    return findPowerUp(body)
+    move = findPowerUp(body)
+    if move is None:
+        return SHOOT
+    return move
 
 env = os.environ
 req_params_query = env['REQ_PARAMS_QUERY']
