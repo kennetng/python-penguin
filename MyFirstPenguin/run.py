@@ -92,7 +92,9 @@ def doesCellContainWall(walls, x, y):
     return False
 
 def fireInRange(body):
+    return SHOOT
     move = moveTowardsPoint(body, pointX, pointY)
+    
     
     if move is MOVE_DOWN:
         return MOVE_UP
