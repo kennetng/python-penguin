@@ -31,8 +31,7 @@ def findPowerUp(body):
     
 
     for powerUp in powerUps:
-        return RETREAT
-        if powerUp[Type] == "strength" and maxHealth:
+        if powerUp[Type] is "strength" and maxHealth:
                 continue
             
     
