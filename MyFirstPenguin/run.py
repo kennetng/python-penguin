@@ -25,10 +25,15 @@ def findPowerUp(body):
     maxHealth = False
     if body["you"]["strength"] == 300:
         maxHealth = True
-        
-    closest = powerUps[0]
-    closest_dist = calcDistance(powerUps[0], body["you"])
     
+    
+    closest = powerUps.pop()
+    
+    while closest["type"] is "strength" and maxHealth and len(powerUps) != 0:
+        closest = powerUps.pop()
+    
+
+    closest_dist = calcDistance(closest, body["you"])
 
     for powerUp in powerUps:
         if powerUp["type"] is "strength" and maxHealth:
