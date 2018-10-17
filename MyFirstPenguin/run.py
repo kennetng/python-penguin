@@ -49,6 +49,7 @@ def findPowerUp(body):
     closest = MoveToClosest(body, body["bonusTiles"])
     if closest is None:
         return None
+    return ADVANCE
     return moveTowardsPoint(body, closest["x"], closest["y"])
         
     
