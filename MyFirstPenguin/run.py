@@ -102,10 +102,9 @@ def fireInRange(body):
         return MOVE_DOWN
     if move is MOVE_LEFT:
         return MOVE_RIGHT
-    if move is MOVE_LEFT:
-        return MOVE_RIGHT
+    if move is MOVE_RIGHT:
+        return MOVE_LEFT
     
-    return None
     
 
 def nothinToDo(body):
