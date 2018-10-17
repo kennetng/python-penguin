@@ -33,8 +33,9 @@ def findPowerUp(body):
     for powerUp in powerUps:
         if powerUp[Type] is "strength" and maxHealth:
                 continue
-            
-    
+        
+        return SHOOT    
+        
         dist = calcDistance(body["you"], powerUp)
         if dist > closest:
             closest_dist = dist
