@@ -41,7 +41,7 @@ def MoveToClosest(body, tiles):
     return moveTowardsPoint(body, closest["x"], closest["y"])    
 
 def findPowerUp(body):
-    MoveToClosest(body, bode["bonusTiles"])
+    return MoveToClosest(body, bode["bonusTiles"])
     
         
     
