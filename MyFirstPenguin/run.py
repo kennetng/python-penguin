@@ -4,6 +4,7 @@ import random
 import math
 from pickletools import dis
 from math import sqrt
+from nt import close
 
 ROTATE_LEFT = "rotate-left"
 ROTATE_RIGHT = "rotate-right"
@@ -92,7 +93,7 @@ def doesCellContainWall(walls, x, y):
     return False
 
 def fireInRange(body):
-    move = moveTowardsPoint(body, pointX, pointY)
+    move = MoveToClosest(body, body["fire"])
     
     
     if move is MOVE_DOWN:
