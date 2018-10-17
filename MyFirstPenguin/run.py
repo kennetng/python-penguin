@@ -18,9 +18,10 @@ MOVE_LEFT = {"top" : ROTATE_LEFT, "bottom" : ROTATE_RIGHT, "right" : ROTATE_RIGH
 
 
 def calcDistance(a, b):
-    return abs(a["x"] - b["x"]) + abs(a["y"]- b["y"])
+    return (abs(a["x"] - b["x"]) + abs(a["y"]- b["y"]))
 
 def findPowerUp(body):
+    print("hello")
     powerUps = body["bonusTiles"]
     maxHealth = False
     if body["you"]["strength"] == 300:
