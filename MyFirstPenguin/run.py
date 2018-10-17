@@ -95,6 +95,8 @@ def fireInRange(body):
     pass
 
 def chooseAction(body):
+    if(len(body["fire"]) != 0):
+        move = fireInRange(body)
     move = findPowerUp(body)
     return move
 
