@@ -41,7 +41,7 @@ def findPowerUp(body):
         
         
         dist = calcDistance(body["you"], powerUp)
-        if dist > closest:
+        if dist < closest:
             closest_dist = dist
             closest = powerUp
         
