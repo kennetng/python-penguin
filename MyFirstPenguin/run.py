@@ -21,9 +21,9 @@ def calcDistance(a, b):
     return abs(a["x"] - b["x"]) + abs(a["y"]- b["y"])
 
 def findPowerUp(body):
-    return SHOOT
     powerUps = body["bonusTiles"]
     maxHealth = False
+    return SHOOT
     if body["you"]["strength"] == 300:
         maxHealth = True
         
