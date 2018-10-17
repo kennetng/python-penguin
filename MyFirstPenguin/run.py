@@ -4,8 +4,6 @@ import random
 import math
 from pickletools import dis
 from math import sqrt
-from fileinput import close
-from tkinter.constants import LEFT
 
 ROTATE_LEFT = "rotate-left"
 ROTATE_RIGHT = "rotate-right"
@@ -43,14 +41,11 @@ def MoveToClosest(body, tiles):
             closest_dist = dist
             closest = powerUp
         
-    return closest 
+    return moveTowardsPoint(body, closest["x"], closest["y"])    
 
 def findPowerUp(body):
-    closest = MoveToClosest(body, body["bonusTiles"])
-    if closest is None:
-        return None
-    return ADVANCE
-    return moveTowardsPoint(body, closest["x"], closest["y"])
+    return MoveToClosest(body, body["bonusTiles"])
+    
         
     
     
@@ -97,23 +92,10 @@ def doesCellContainWall(walls, x, y):
     return False
 
 def fireInRange(body):
-    closest = MoveToClosest(body, body["fire"])
-    if closest is None:
-        return None
-    
-    move =  moveTowardsPoint(body, closest["x"], closest["y"])
-
-    if move is MOVE_UP:
-        return  MOVE_DOWN
-    if move is MOVE_DOWN:
-        return  MOVE_UP
-    if move is MOVE_LEFT:
-        return  MOVE_RIGHT
-    if move is MOVE_RIGHT:
-        return  MOVE_LEFT
+    pass
 
 def chooseAction(body):
-    move = SHOOT
+    move = findPowerUp(body)
     return move
 
 env = os.environ
