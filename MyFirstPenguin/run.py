@@ -112,10 +112,8 @@ def fireInRange(body):
         return  MOVE_LEFT
 
 def chooseAction(body):
-    if len(body["fire"]) != 0:
-        move = fireInRange(body)
-    else:
-        move = findPowerUp(body)
+
+    move = findPowerUp(body)
     return move
 
 env = os.environ
