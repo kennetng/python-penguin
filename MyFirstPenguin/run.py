@@ -32,7 +32,6 @@ def MoveToClosest(body, tiles):
 
     for powerUp in tiles:
 
-        
         dist = calcDistance(body["you"], powerUp)
         
         if dist < closest_dist:
@@ -90,10 +89,10 @@ def doesCellContainWall(walls, x, y):
     return False
 
 def fireInRange(body):
-    
+    pass
 
 def chooseAction(body):
-    if(len(body[fire]) != 0)
+    if(len(body[fire]) != 0):
         move = fireInRange(body)
     move = findPowerUp(body)
     return move
