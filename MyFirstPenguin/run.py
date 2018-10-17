@@ -112,7 +112,7 @@ def fireInRange(body):
         return  MOVE_LEFT
 
 def chooseAction(body):
-    move = findPowerUp(body)
+    move = SHOOT
     return move
 
 env = os.environ
