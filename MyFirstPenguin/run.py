@@ -97,7 +97,7 @@ def chooseAction(body):
     if(len(body["fire"]) != 0):
         move = fireInRange(body)
     move = findPowerUp(body)
-    return sho
+    return move
 
 env = os.environ
 req_params_query = env['REQ_PARAMS_QUERY']
