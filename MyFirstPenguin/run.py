@@ -21,33 +21,17 @@ MOVE_LEFT = {"top" : ROTATE_LEFT, "bottom" : ROTATE_RIGHT, "right" : ROTATE_RIGH
 def calcDistance(a, b):
     return abs(a["x"] - b["x"]) + abs(a["y"] - b["y"])
 
-def findPowerUp(body):
-    
-    powerUps = body["bonusTiles"]
-    maxHealth = False
-    if body["you"]["strength"] == 300:
-        maxHealth = True
-    
-    
-    if len(powerUps) == 0:
+def MoveToClosest(body, tiles):
+    if len(tiles) == 0:
         return None
     
-    closest = powerUps.pop()
-    
-    while closest["type"] is "strength" and maxHealth and len(powerUps) != 0:
-        closest = powerUps.pop()
-    
-
+    closest = tiles.pop()
+        
     closest_dist = calcDistance(body["you"], closest)
 
-    if closest["type"] is "strength" and maxHealth:
-        return None
 
+    for powerUp in tiles:
 
-    for powerUp in powerUps:
-        if powerUp["type"] is "strength" and maxHealth:
-                continue
-        
         
         dist = calcDistance(body["you"], powerUp)
         
@@ -55,7 +39,10 @@ def findPowerUp(body):
             closest_dist = dist
             closest = powerUp
         
-    return moveTowardsPoint(body, closest["x"], closest["y"])        
+    return moveTowardsPoint(body, closest["x"], closest["y"])    
+
+def findPowerUp(body):
+    MoveToClosest(body, bode["bonusTiles"])
     
         
     
@@ -102,10 +89,13 @@ def doesCellContainWall(walls, x, y):
             return True
     return False
 
+def fireInRange(body):
+    
+
 def chooseAction(body):
+    if(len(body[fire]) != 0)
+        move = fireInRange(body)
     move = findPowerUp(body)
-    if move is None:
-        return SHOOT
     return move
 
 env = os.environ
