@@ -19,7 +19,7 @@ MOVE_LEFT = {"top" : ROTATE_LEFT, "bottom" : ROTATE_RIGHT, "right" : ROTATE_RIGH
 
 
 def calcDistance(a, b):
-    return sqrt((a["x"] - b["x"])**2 + (a["y"] - b["y"])**2)
+    return abs(a["x"] - b["x"]) + abs(a["y"] - b["y"])
 
 def findPowerUp(body):
     
@@ -51,7 +51,7 @@ def findPowerUp(body):
         
         dist = calcDistance(body["you"], powerUp)
         
-        if dist < closest:
+        if dist < closest_dist:
             closest_dist = dist
             closest = powerUp
         
