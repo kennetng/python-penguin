@@ -40,9 +40,6 @@ def findPowerUp(body):
             closest_dist = dist
             closest = powerUp
         
-    return RETREAT  
-    
-
     return moveTowardsPoint(body, closest["x"], closest["y"])        
     
         
@@ -62,9 +59,12 @@ def moveTowardsPoint(body, pointX, pointY):
         plannedAction = MOVE_DOWN[bodyDirection]
     elif penguinPositionY > pointY:
         plannedAction = MOVE_UP[bodyDirection]
+        
+    return SHOOT
 
     if plannedAction == ADVANCE and wallInFrontOfPenguin(body):
         plannedAction = SHOOT
+        
         
     return plannedAction
 
