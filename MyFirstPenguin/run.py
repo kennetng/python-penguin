@@ -31,16 +31,15 @@ def findPowerUp(body):
     
 
     for powerUp in powerUps:
-        print("esd")
         if powerUp["type"] is "strength" and maxHealth:
                 continue
         
-        return SHOOT    
         
         dist = calcDistance(body["you"], powerUp)
         if dist > closest:
             closest_dist = dist
             closest = powerUp
+        return SHOOT    
     
 
     return moveTowardsPoint(body, closest["x"], closest["y"])        
