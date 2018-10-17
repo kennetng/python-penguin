@@ -112,7 +112,6 @@ def fireInRange(body):
         return  MOVE_LEFT
 
 def chooseAction(body):
-
     move = findPowerUp(body)
     return move
 
