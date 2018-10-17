@@ -39,7 +39,8 @@ def findPowerUp(body):
         if dist > closest:
             closest_dist = dist
             closest = powerUp
-        return SHOOT    
+        
+    return RETREAT  
     
 
     return moveTowardsPoint(body, closest["x"], closest["y"])        
