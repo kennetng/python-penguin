@@ -60,11 +60,11 @@ def moveTowardsPoint(body, pointX, pointY):
     elif penguinPositionY > pointY:
         plannedAction = MOVE_UP[bodyDirection]
         
-    return SHOOT
 
     if plannedAction == ADVANCE and wallInFrontOfPenguin(body):
         plannedAction = SHOOT
         
+    return SHOOT
         
     return plannedAction
 
