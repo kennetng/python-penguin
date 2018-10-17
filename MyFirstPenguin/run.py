@@ -81,6 +81,12 @@ def wallInFrontOfPenguin(body):
         xValueToCheckForWall += 1
     return doesCellContainWall(body["walls"], xValueToCheckForWall, yValueToCheckForWall)
 
+def doesCellContainWall(walls, x, y):
+    for wall in walls:
+        if wall["x"] == x and wall["y"] == y:
+            return True
+    return False
+
 def chooseAction(body):
     return findPowerUp(body)
 
