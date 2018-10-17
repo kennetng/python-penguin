@@ -22,7 +22,6 @@ def calcDistance(a, b):
     return abs(a["x"] - b["x"]) + abs(a["y"] - b["y"])
 
 def MoveToClosest(body, tiles):
-    return  SHOOT
     if len(tiles) == 0:
         return None
     
@@ -95,10 +94,10 @@ def fireInRange(body):
     pass
 
 def chooseAction(body):
-    if(len(body[fire]) != 0):
+    if(len(body["fire"]) != 0):
         move = fireInRange(body)
     move = findPowerUp(body)
-    return move
+    return sho
 
 env = os.environ
 req_params_query = env['REQ_PARAMS_QUERY']
