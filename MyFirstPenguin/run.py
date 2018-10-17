@@ -31,10 +31,10 @@ def findPowerUp(body):
     
 
     for powerUp in powerUps:
+        return RETREAT
         if powerUp[Type] == "strength" and maxHealth:
                 continue
             
-        return RETREAT
     
         dist = calcDistance(body["you"], powerUp)
         if dist > closest:
