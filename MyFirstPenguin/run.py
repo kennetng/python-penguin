@@ -19,7 +19,7 @@ MOVE_LEFT = {"top" : ROTATE_LEFT, "bottom" : ROTATE_RIGHT, "right" : ROTATE_RIGH
 
 
 def calcDistance(a, b):
-    return sqrt((a["x"] - b["x"])**2 + (a["y"]- b["y"])**2)
+    return abs(a["x"] - b["x"]) + abs(a["y"] - b["y"])
 
 def findPowerUp(body):
     
@@ -35,7 +35,7 @@ def findPowerUp(body):
         closest = powerUps.pop()
     
 
-    closest_dist = calcDistance(closest, body["you"])
+    closest_dist = calcDistance(body["you"], closest)
 
     if closest["type"] is "strength" and maxHealth:
         return SHOOT
@@ -47,6 +47,7 @@ def findPowerUp(body):
         
         
         dist = calcDistance(body["you"], powerUp)
+        
         if dist < closest:
             closest_dist = dist
             closest = powerUp
