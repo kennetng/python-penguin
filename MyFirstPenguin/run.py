@@ -4,6 +4,7 @@ import random
 import math
 from pickletools import dis
 from math import sqrt
+from fileinput import close
 
 ROTATE_LEFT = "rotate-left"
 ROTATE_RIGHT = "rotate-right"
@@ -41,11 +42,13 @@ def MoveToClosest(body, tiles):
             closest_dist = dist
             closest = powerUp
         
-    return moveTowardsPoint(body, closest["x"], closest["y"])    
+    return closest 
 
 def findPowerUp(body):
-    return MoveToClosest(body, body["bonusTiles"])
-    
+    closest = MoveToClosest(body, body["bonusTiles"])
+    if closest is None:
+        return None
+    return moveTowardsPoint(body, closest["x"], closest["y"])
         
     
     
@@ -95,7 +98,10 @@ def fireInRange(body):
     pass
 
 def chooseAction(body):
-    move = findPowerUp(body)
+    if len(body["fire"]) != 0:
+        move = fireInRange(body)
+    else:
+        move = findPowerUp(body)
     return move
 
 env = os.environ
