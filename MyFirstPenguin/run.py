@@ -125,6 +125,7 @@ def fireInRange(body):
         
     newPos[closest_dir] = newPos[closest_dir] + closest_dist
 
+    return RETREAT
 
     return moveTowardsPoint(body, newPos["x"], newPos["y"])
     
