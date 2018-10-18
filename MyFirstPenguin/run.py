@@ -122,7 +122,7 @@ def fireInRange(body):
     newPos[closest_dir] = newPos[closest_dir] + closest_dist
 
     return moveTowardsPoint(body, newPos["x"], newPos["y"])
-
+"""
 # This method tries to place him in the correct position to shoot the enemy
 def shootInRange(body):
     plannedAction = "pass"
@@ -193,7 +193,7 @@ def rotateX(me, enemy):
         return MOVE_DOWN
     else:
         return 'CORRECT'
-    
+"""    
 
 def nothinToDo(body):
     centerPointX = math.floor(body["mapWidth"] / 2)
@@ -203,8 +203,7 @@ def nothinToDo(body):
 def chooseAction(body):
     if(len(body["fire"]) != 0):
         move = fireInRange(body)
-    elif len(body["enemies"]) != 0:
-        move = shootInRange(body)
+
     else:
         move = findPowerUp(body)
     
