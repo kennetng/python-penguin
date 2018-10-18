@@ -158,44 +158,6 @@ def enemiesInRange(body):
     
     return SHOOT
 
-def shootInRange(body):
-    plannedAction = "pass"
-    me = body['you']
-
-    meX = me['x']
-    meY = me['y']
-    for enemy in body["enemies"]:
-        enemyX = enemy['x']
-        enemyY = enemy['y']
-
-        xLengde = abs(enemyX - meX)
-        yLengde = abs(enemyY - meY)
-        if xLengde <= yLengde:
-            # Hvis x lengden er kortere
-            if meY < enemyY:
-                #Rotate top
-                if me['direction'] != 'top':
-                    return MOVE_UP
-                else:
-                    return SHOOT
-            else:
-                if me['direction'] != 'bottom':
-                    return MOVE_DOWN
-                else:
-                    return SHOOT
-        else:
-            if meX <= enemyX:
-                if me['direction'] != 'right':
-                    return MOVE_RIGHT
-                else:
-                    return SHOOT
-            else:
-                if me['direction'] != 'left':
-                    return MOVE_LEFT
-                else:
-                    return SHOOT
-    return PASS
-
 def nothinToDo(body):
     return RETREAT
 
@@ -203,7 +165,7 @@ def chooseAction(body):
     if(len(body["fire"]) != 0):
         move = fireInRange(body)
     elif(len(body["enemies"]) != 0):
-        move = shootInRange(body)
+        move = enemiesInRange(body)
     else:
         move = findPowerUp(body)
     
