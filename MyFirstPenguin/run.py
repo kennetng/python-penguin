@@ -120,10 +120,11 @@ def fireInRange(body):
 
     if dir is "y":
         return moveTowardsPoint(body, bodyX, bodyY + closest_dist)
+    
     return moveTowardsPoint(body, bodyX + closest_dist, bodyY)
 
 def nothinToDo(body):
-    return PASS
+    return SHOOT
 
 def chooseAction(body):
     if(len(body["fire"]) != 0):
