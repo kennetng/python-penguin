@@ -43,7 +43,7 @@ def MoveToClosest(body, tiles):
     for powerUp in tiles:
 
         if powerUp["type"] is "weapon-range":
-            return None
+            continue
 
         dist = calcDistance(body["you"], powerUp)
         
