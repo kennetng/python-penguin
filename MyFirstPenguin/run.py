@@ -117,6 +117,8 @@ def fireInRange(body):
             if fire["y"] - bodyY > 0:
                 newY = newY -1
 
+    return SHOOT
+
     return moveTowardsPoint(body, newX, newY)
     
 
