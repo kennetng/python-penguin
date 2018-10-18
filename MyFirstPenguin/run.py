@@ -190,13 +190,13 @@ def shootInRange(body):
     return PASS
 
 def nothinToDo(body):
-    return SHOOT
+    return PASS
 
 def chooseAction(body):
     if(len(body["fire"]) != 0):
         move = fireInRange(body)
     elif(len(body["enemies"][0]) > 1 and calcDistance(body["enemies"][0], body["you"]) <= body["you"]["weaponRange"]):
-        move = enemiesInRange(body)
+        move = shootInRange(body)
     else:
         move = findPowerUp(body)
 
