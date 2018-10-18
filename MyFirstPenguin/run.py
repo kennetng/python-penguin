@@ -93,19 +93,33 @@ def doesCellContainWall(walls, x, y):
     return False
 
 def fireInRange(body):
-    move = MoveToClosest(body, body["fire"])
+    
+    bodyX = body["you"]["x"]
+    bodyY = body["you"]["y"]
+
+    tiles = body["fire"]
+
+    if len(tiles) == 0:
+        return None
     
     
-    if move is MOVE_DOWN:
-        return MOVE_UP
-    if move is MOVE_UP:
-        return MOVE_DOWN
-    if move is MOVE_LEFT:
-        return MOVE_RIGHT
-    if move is MOVE_RIGHT:
-        return MOVE_LEFT
+    dir = ""
     
+    closest_dist = 100
     
+    for powerUp in tiles:
+
+        if abs(closest_dist) > abs(bodyY - powerUp["y"]):
+            closest = powerUp, "y"
+            closest_dist = bodyY - powerUp[0]["y"]
+
+        if abs(closest_dist) > abs(bodyX - powerUp["x"]):
+            closest = powerUp, "x"
+            closest_dist = bodyX - powerUp[0]["x"]
+
+    if dir is "y":
+        return moveTowardsPoint(body, bodyX, bodyY + closest_dist)
+    return moveTowardsPoint(body, bodyX + closest_dist, bodyY)
 
 def nothinToDo(body):
     return PASS
