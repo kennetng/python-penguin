@@ -120,13 +120,12 @@ def fireInRange(body):
         
     if abs(closest_dist) > 0:
         body["fire"] = []
-        return SHOOT
         return chooseAction(body)
 
         
     newPos[closest_dir] = newPos[closest_dir] + closest_dist
 
-
+    return SHOOT
     return moveTowardsPoint(body, newPos["x"], newPos["y"])
     
 
