@@ -111,11 +111,11 @@ def fireInRange(body):
         
 
         if abs(closest_dist) > abs(bodyY - powerUp["y"]):
-            closest = powerUp, "y"
+            dir = "y"
             closest_dist = bodyY - powerUp[0]["y"]
 
         if abs(closest_dist) > abs(bodyX - powerUp["x"]):
-            closest = powerUp, "x"
+            dir = "x"
             closest_dist = bodyX - powerUp[0]["x"]
 
     if dir is "y":
