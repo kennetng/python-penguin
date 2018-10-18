@@ -36,12 +36,21 @@ def MoveToClosest(body, tiles):
     
     closest = tiles.pop()
     
+    if closest["type"] == "jquery" and len(tiles) != 0:
+        closest = tiles.pop()    
+
+    if closest["type"] == "jquery":
+        return None
+    
+    
     
     closest_dist = calcDistance(body["you"], closest)
 
 
     for powerUp in tiles:
-
+        
+        if closest["type"] == "jquery":
+            continue
         
         dist = calcDistance(body["you"], powerUp)
         
