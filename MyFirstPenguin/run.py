@@ -120,6 +120,7 @@ def fireInRange(body):
         
     if abs(closest_dist) > 0:
         body["fire"] = []
+        return SHOOT
         return chooseAction(body)
 
         
