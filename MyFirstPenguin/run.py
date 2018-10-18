@@ -123,14 +123,13 @@ def fireInRange(body):
         return chooseAction(body)
 
         
-    newPos[closest_dir] = newPos[closest_dir] + closest_dist
+    newPos[closest_dir] = newPos[closest_dir] - closest_dist
 
-    return SHOOT
     return moveTowardsPoint(body, newPos["x"], newPos["y"])
     
 
 def nothinToDo(body):
-    return SHOOT
+    return RETREAT
 
 def chooseAction(body):
     if(len(body["fire"]) != 0):
