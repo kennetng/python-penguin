@@ -35,7 +35,12 @@ def MoveToClosest(body, tiles):
     
     
     closest = tiles.pop()
+    
+    while(closest["type"] == "weapon-range" and len(tiles) != 0):
+        closest = tiles.pop
         
+    if powerUp["type"] == "weapon-range":
+            return None
 
     
     closest_dist = calcDistance(body["you"], closest)
@@ -43,6 +48,9 @@ def MoveToClosest(body, tiles):
 
     for powerUp in tiles:
 
+        if powerUp["type"] == "weapon-range":
+            continue
+        
         dist = calcDistance(body["you"], powerUp)
         
         if dist < closest_dist:
