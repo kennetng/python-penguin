@@ -196,7 +196,7 @@ def chooseAction(body):
     if(len(body["fire"]) != 0):
         move = fireInRange(body)
     elif(len(body["enemies"][0]) > 1):
-        move = shootInRange(body)
+        move = enemiesInRange(body)
     else:
         move = findPowerUp(body)
 
