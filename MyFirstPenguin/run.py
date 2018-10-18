@@ -101,10 +101,9 @@ def fireInRange(body):
 
     fires = body["fire"]
 
-    if len(tiles) == 0:
+    if len(fires) == 0:
         return None
         
-    return SHOOT
 
     for fire in fires:
         if abs(fire["x"] - bodyX) <= abs(fire["y"] - bodyY):
