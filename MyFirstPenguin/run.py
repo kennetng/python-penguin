@@ -145,18 +145,57 @@ def enemiesInRange(body):
     
     return SHOOT
     
-    if(abs(you["x"]-enemy["x"]) < abs(you["y"]-enemy["y"])):
+    if(abs(you["x"]-enemy["x"]) > abs(you["y"]-enemy["y"])):
         if(you["y"]-enemy["y"] < 0):
             return SHOOT_DOWN[body["you"]["direction"]]
         else:
             return SHOOT_UP[body["you"]["direction"]]
     else:
         if(you["x"]-enemy["x"] < 0):
-            return SHOOT_LEFT[body["you"]["direction"]]
-        else:
             return SHOOT_RIGHT[body["you"]["direction"]]
+        else:
+            return SHOOT_LEFT[body["you"]["direction"]]
     
     return SHOOT
+
+def shootInRange(body):
+    plannedAction = "pass"
+    me = body['you']
+    bodyDirection = body["you"]["direction"]
+    
+    meX = me['x']
+    meY = me['y']
+    for enemy in body["enemies"]:
+        enemyX = enemy['x']
+        enemyY = enemy['y']
+
+        xLengde = abs(enemyX - meX)
+        yLengde = abs(enemyY - meY)
+        if xLengde <= yLengde:
+            # Hvis x lengden er kortere
+            if meY < enemyY:
+                #Rotate top
+                if me['direction'] != 'top':
+                    return MOVE_UP[bodyDirection]
+                else:
+                    return SHOOT
+            else:
+                if me['direction'] != 'bottom':
+                    return MOVE_DOWN[bodyDirection]
+                else:
+                    return SHOOT
+        else:
+            if meX <= enemyX:
+                if me['direction'] != 'right':
+                    return MOVE_RIGHT[bodyDirection]
+                else:
+                    return SHOOT
+            else:
+                if me['direction'] != 'left':
+                    return MOVE_LEFT[bodyDirection]
+                else:
+                    return SHOOT
+    return PASS
 
 def nothinToDo(body):
     return RETREAT
@@ -165,7 +204,7 @@ def chooseAction(body):
     if(len(body["fire"]) != 0):
         move = fireInRange(body)
     elif(len(body["enemies"]) != 0):
-        move = enemiesInRange(body)
+        move = RETREAT
     else:
         move = findPowerUp(body)
     
