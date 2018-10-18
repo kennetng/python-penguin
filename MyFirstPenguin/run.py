@@ -122,6 +122,77 @@ def fireInRange(body):
     newPos[closest_dir] = newPos[closest_dir] + closest_dist
 
     return moveTowardsPoint(body, newPos["x"], newPos["y"])
+
+# This method tries to place him in the correct position to shoot the enemy
+def shootInRange(body):
+    plannedAction = "pass"
+    me = body['you']
+    if body["enemies"]:
+        for enemy in body["enemies"]:
+            if enemy["x"] == me['x']:
+                plannedAction = rotateX(me, enemy)
+                if plannedAction == "CORRECT":
+                    # TODO Calculate dmg
+                    return SHOOT
+            elif enemy['y'] == me['y']:
+                plannedAction = rotateY(me, enemy)
+                if plannedAction == "CORRECT":
+                    # TODO Calculate dmg
+                    return SHOOT
+            else:
+                plannedAction = stalkEnemy(me, enemy)
+    return plannedAction
+
+
+# Vurderer hvilken som er kortest vei til å komme i samme linje som agenten
+def stalkEnemy(me, enemy):
+    enemyX = enemy['x']
+    enemyY = enemy['y']
+    meX = me['x']
+    meY = me['y']
+
+    xLengde = abs(enemyX - meX)
+    yLengde = abs(enemyY - meY)
+
+    if xLengde <= yLengde:
+        if meX < enemyX:
+            return moveTowardsPoint(body, meX + 1, meY)
+        else:
+            return moveTowardsPoint(body, meX - 1, meY)
+    else:
+        if meY < enemyY:
+            return moveTowardsPoint(body, meX, meY + 1)
+        else:
+            return moveTowardsPoint(body, meX, meY - 1)
+
+
+def calculateDmg(me, enemy):
+    enemyHP = enemy["strength"] / me['weaponDamage']
+    myHP = me["strength"] / enemy['weaponDamage']
+    if enemyHP > myHP:
+        return RETREAT
+    else:
+        return SHOOT
+
+
+# Hvis fienden er i samme Y linje, roter i riktig direksjon
+def rotateY(me, enemy):
+    if me['x'] < enemy['x'] and me['direction'] != 'right':
+        return MOVE_RIGHT
+    elif me['x'] > enemy['x'] and me['direction'] != 'left':
+        return MOVE_LEFT
+    else:
+        return "CORRECT"
+
+
+# Hvis fienden er i samme X linje, roter i riktig direksjon
+def rotateX(me, enemy):
+    if me['y'] < enemy['y'] and me['direction'] != 'top':
+        return MOVE_UP
+    elif me['y'] > enemy['y'] and me['direction'] != 'bottom':
+        return MOVE_DOWN
+    else:
+        return 'CORRECT'
     
 
 def nothinToDo(body):
@@ -132,6 +203,8 @@ def nothinToDo(body):
 def chooseAction(body):
     if(len(body["fire"]) != 0):
         move = fireInRange(body)
+    elif len(body["enemies"]) != 0:
+        shootInRange(body)
     else:
         move = findPowerUp(body)
     
