@@ -108,6 +108,7 @@ def fireInRange(body):
     closest_dist = 100
     
     for powerUp in tiles:
+        
 
         if abs(closest_dist) > abs(bodyY - powerUp["y"]):
             closest = powerUp, "y"
