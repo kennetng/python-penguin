@@ -24,7 +24,6 @@ def calcDistance(a, b):
 
 def MoveToClosest(body, tiles):
     
-    return RETREAT
     
     if len(tiles) == 0:
         return None
