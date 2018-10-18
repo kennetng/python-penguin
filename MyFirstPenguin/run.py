@@ -137,7 +137,7 @@ def enemiesInRange(body):
     
     return SHOOT
     
-    if(abs(you["x"]-enemy["x"]) > abs(you["y"]-enemy["y"])):
+    if(abs(you["x"]-enemy["x"]) < abs(you["y"]-enemy["y"])):
         if(you["y"]-enemy["y"] < 0):
             return SHOOT_DOWN[body["you"]["direction"]]
         else:
@@ -195,7 +195,7 @@ def nothinToDo(body):
 def chooseAction(body):
     if(len(body["fire"]) != 0):
         move = fireInRange(body)
-    elif(len(body["enemies"][0]) > 1):
+    elif(len(body["enemies"][0]) > 1 and calcDistance(body["enemies"][0], body["you"]) <= body["you"]["weaponRange"]):
         move = enemiesInRange(body)
     else:
         move = findPowerUp(body)
