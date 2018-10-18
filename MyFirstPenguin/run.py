@@ -95,9 +95,12 @@ def doesCellContainWall(walls, x, y):
 def fireInRange(body):
     
     bodyX = body["you"]["x"]
-    newX = body["you"]["x"]
     bodyY = body["you"]["y"]
-    newY = body["you"]["y"]
+    
+    newPos = {"x" : bodyX, "y" : bodyY}
+    
+    closest_dist = 100
+    closest_dir = ""
 
     fires = body["fire"]
 
@@ -106,20 +109,18 @@ def fireInRange(body):
         
 
     for fire in fires:
-        if abs(fire["x"] - bodyX) <= abs(fire["y"] - bodyY):
-            if fire["x"] - bodyX < 0:
-                newX = newX+1
-            if fire["x"] - bodyX > 0:
-                newX = newX -1
+        if abs(fire["x"] - bodyX) <= abs(fire["y"] - bodyY and closest_dist > abs(fire["x"] - bodyX)):
+            closest_dir = "x"
+            closest_dist = fire["x"] - bodyX
         
-        if abs(fire["x"] - bodyX) >= abs(fire["y"] - bodyY):
-            if fire["y"] - bodyY < 0:
-                newY = newY +1
-            if fire["y"] - bodyY > 0:
-                newY = newY -1
+        if abs(fire["x"] - bodyX) >= abs(fire["y"] - bodyY and closest_dist > abs(fire["y"] - bodyY)):
+            closest_dir = "y"
+            closest_dist = fire["y"] - bodyX
+        
+    newPos[dir] = newPos[dir] - closest_dist
 
 
-    return moveTowardsPoint(body, newX, newY)
+    return moveTowardsPoint(body, newPos["x"], newPos["y"])
     
 
 def nothinToDo(body):
