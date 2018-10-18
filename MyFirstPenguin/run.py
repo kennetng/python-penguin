@@ -157,9 +157,7 @@ def enemiesInRange(body):
     return SHOOT
 
 def nothinToDo(body):
-    centerPointX = math.floor(body["mapWidth"] / 2)
-    centerPointY = math.floor(body["mapHeight"] / 2)
-    return moveTowardsPoint(body, centerPointX, centerPointY)
+    return RETREAT
 
 def chooseAction(body):
     if(len(body["fire"]) != 0):
