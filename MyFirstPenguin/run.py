@@ -120,6 +120,8 @@ def fireInRange(body):
             closest_dist = fire["y"] - bodyX
         
         
+    return SHOOT
+        
     newPos[dir] = newPos[dir] - closest_dist
 
 
