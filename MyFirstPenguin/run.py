@@ -110,7 +110,7 @@ def fireInRange(body):
         
 
     for fire in fires:
-        if abs(fire["x"] - bodyX) <= abs(fire["y"] - bodyY) and closest_dist > abs(fire["x"] - bodyX) and newPos["x"] - closest_dist:
+        if abs(fire["x"] - bodyX) <= abs(fire["y"] - bodyY) and closest_dist > abs(fire["x"] - bodyX):
             closest_dir = "x"
             closest_dist = fire["x"] - bodyX
         
