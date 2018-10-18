@@ -167,26 +167,14 @@ def shootInRange(body):
             # Hvis x lengden er kortere
             if meY < enemyY:
                 #Rotate top
-                if me['direction'] != 'top':
-                    return MOVE_UP[bodyDirection]
-                else:
-                    return SHOOT
+                return SHOOT_DOWN[bodyDirection]
             else:
-                if me['direction'] != 'bottom':
-                    return MOVE_DOWN[bodyDirection]
-                else:
-                    return SHOOT
+                return SHOOT_UP[bodyDirection]
         else:
             if meX <= enemyX:
-                if me['direction'] != 'right':
-                    return MOVE_RIGHT[bodyDirection]
-                else:
-                    return SHOOT
+                return SHOOT_RIGHT[bodyDirection]
             else:
-                if me['direction'] != 'left':
-                    return MOVE_LEFT[bodyDirection]
-                else:
-                    return SHOOT
+                return SHOOT_LEFT[bodyDirection]
     return PASS
 
 def nothinToDo(body):
