@@ -118,6 +118,7 @@ def fireInRange(body):
             closest_dir = "y"
             closest_dist = fire["y"] - bodyY
         
+    return RETREAT
     if closest_dist == 0:
         body["fire"] = []
         return chooseAction(body)
@@ -125,7 +126,6 @@ def fireInRange(body):
         
     newPos[closest_dir] = newPos[closest_dir] + closest_dist
 
-    return RETREAT
 
     return moveTowardsPoint(body, newPos["x"], newPos["y"])
     
