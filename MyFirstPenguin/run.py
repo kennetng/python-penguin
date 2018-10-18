@@ -104,6 +104,8 @@ def fireInRange(body):
     if len(tiles) == 0:
         return None
         
+    return SHOOT
+
     for fire in fires:
         if abs(fire["x"] - bodyX) <= abs(fire["y"] - bodyY):
             if fire["x"] - bodyX < 0:
@@ -117,7 +119,6 @@ def fireInRange(body):
             if fire["y"] - bodyY > 0:
                 newY = newY -1
 
-    return SHOOT
 
     return moveTowardsPoint(body, newX, newY)
     
