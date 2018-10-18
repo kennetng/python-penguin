@@ -123,7 +123,7 @@ def fireInRange(body):
         return chooseAction(body)
 
         
-    newPos[closest_dir] = newPos[closest_dir] - closest_dist
+    newPos[closest_dir] = newPos[closest_dir] + closest_dist
 
 
     return moveTowardsPoint(body, newPos["x"], newPos["y"])
