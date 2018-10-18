@@ -97,9 +97,10 @@ def fireInRange(body):
     bodyX = body["you"]["x"]
     bodyY = body["you"]["y"]
     
-    return SHOOT
 
     newPos = {"x" : bodyX, "y" : bodyY}
+    
+    return SHOOT
     
     closest_dist = 100
     closest_dir = ""
