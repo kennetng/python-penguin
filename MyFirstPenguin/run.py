@@ -18,6 +18,11 @@ MOVE_DOWN =  {"top" : ROTATE_LEFT, "bottom" : ADVANCE, "right" : ROTATE_RIGHT ,"
 MOVE_RIGHT = {"top" : ROTATE_RIGHT, "bottom" : ROTATE_LEFT, "right" : ADVANCE ,"left" : ROTATE_LEFT }
 MOVE_LEFT = {"top" : ROTATE_LEFT, "bottom" : ROTATE_RIGHT, "right" : ROTATE_RIGHT,"left" : ADVANCE }
 
+SHOOT_UP =  {"top" : SHOOT, "bottom" : ROTATE_LEFT, "right" : ROTATE_LEFT ,"left" : ROTATE_RIGHT }
+SHOOT_DOWN =  {"top" : ROTATE_LEFT, "bottom" : SHOOT, "right" : ROTATE_RIGHT ,"left" : ROTATE_LEFT }
+SHOOT_RIGHT = {"top" : ROTATE_RIGHT, "bottom" : ROTATE_LEFT, "right" : SHOOT ,"left" : ROTATE_LEFT }
+SHOOT_LEFT = {"top" : ROTATE_LEFT, "bottom" : ROTATE_RIGHT, "right" : ROTATE_RIGHT,"left" : SHOOT }
+
 
 def calcDistance(a, b):
     return abs(a["x"] - b["x"]) + abs(a["y"] - b["y"])
@@ -134,8 +139,22 @@ def fireInRange(body):
     return moveTowardsPoint(body, newPos["x"], newPos["y"])
     
 
-
-
+def enemiesInRange(body):
+    you = body["you"]
+    enemy = body["enemies"][0]
+    
+    if(abs(you["x"]-enemy["x"]) > abs(you["y"]-enemy["y"])):
+        if(you["y"]-enemy["y"] < 0):
+            return SHOOT_DOWN
+        else:
+            return SHOOT_UP
+    else:
+        if(you["x"]-enemy["x"] < 0):
+            return SHOOT_RIGHT
+        else:
+            return SHOOT_RIGHT
+    
+    return SHOOT
 
 def nothinToDo(body):
     centerPointX = math.floor(body["mapWidth"] / 2)
@@ -145,6 +164,8 @@ def nothinToDo(body):
 def chooseAction(body):
     if(len(body["fire"]) != 0):
         move = fireInRange(body)
+    elif(len(body["enemies"]) != 0):
+        move = enemiesInRange(body)
     else:
         move = findPowerUp(body)
     
