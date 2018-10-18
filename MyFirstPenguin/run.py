@@ -152,7 +152,7 @@ def enemiesInRange(body):
         if(you["x"]-enemy["x"] < 0):
             return SHOOT_RIGHT[body["you"]["direction"]]
         else:
-            return SHOOT_RIGHT[body["you"]["direction"]]
+            return SHOOT_LEFT[body["you"]["direction"]]
     
     return SHOOT
 
