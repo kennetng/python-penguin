@@ -103,13 +103,13 @@ def fireInRange(body):
     
     closest_dist = 100
     closest_dir = ""
-    return SHOOT
 
     fires = body["fire"]
 
     if len(fires) == 0:
         return None
         
+    return SHOOT
 
     for fire in fires:
         if abs(fire["x"] - bodyX) <= abs(fire["y"] - bodyY and closest_dist > abs(fire["x"] - bodyX)):
