@@ -140,7 +140,19 @@ def fireInRange(body):
     
 
 def enemiesInRange(body):
-
+    you = body["you"]
+    enemy = body["enemies"][0]
+    
+    if(abs(you["x"]-enemy["x"]) < abs(you["y"]-enemy["y"])):
+        if(you["y"]-enemy["y"] < 0):
+            return SHOOT_DOWN[body["you"]["direction"]]
+        else:
+            return SHOOT_UP[body["you"]["direction"]]
+    else:
+        if(you["x"]-enemy["x"] < 0):
+            return SHOOT_RIGHT[body["you"]["direction"]]
+        else:
+            return SHOOT_RIGHT[body["you"]["direction"]]
     
     return SHOOT
 
