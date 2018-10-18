@@ -118,18 +118,16 @@ def fireInRange(body):
             closest_dir = "y"
             closest_dist = fire["y"] - bodyY
         
-    if abs(closest_dist) > 0:
-        body["fire"] = []
-        return chooseAction(body)
-
         
-    newPos[closest_dir] = newPos[closest_dir] - closest_dist
+    newPos[closest_dir] = newPos[closest_dir] + closest_dist
 
     return moveTowardsPoint(body, newPos["x"], newPos["y"])
     
 
 def nothinToDo(body):
-    return RETREAT
+    centerPointX = math.floor(body["mapWidth"] / 2)
+    centerPointY = math.floor(body["mapHeight"] / 2)
+    return moveTowardsPoint(body, centerPointX, centerPointY)
 
 def chooseAction(body):
     if(len(body["fire"]) != 0):
