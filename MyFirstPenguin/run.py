@@ -97,6 +97,8 @@ def fireInRange(body):
     bodyX = body["you"]["x"]
     bodyY = body["you"]["y"]
     
+    return SHOOT
+
     newPos = {"x" : bodyX, "y" : bodyY}
     
     closest_dist = 100
@@ -107,7 +109,6 @@ def fireInRange(body):
     if len(fires) == 0:
         return None
         
-    return SHOOT
 
     for fire in fires:
         if abs(fire["x"] - bodyX) <= abs(fire["y"] - bodyY and closest_dist > abs(fire["x"] - bodyX)):
