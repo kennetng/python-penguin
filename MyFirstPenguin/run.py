@@ -201,7 +201,7 @@ def chooseAction(body):
 
     
     if move is None:
-        return nothinToDo(body)
+        move =  nothinToDo(body)
     
     if move == PASS:
         move = SHOOT
