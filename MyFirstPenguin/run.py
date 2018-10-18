@@ -30,11 +30,20 @@ def MoveToClosest(body, tiles):
     
     closest = tiles.pop()
     
+    while closest["type"] is "weapon-range" and len(tiles) != 0:
+        closest = tiles.pop()
+    
+    
+    if closest["type"] is "weapon-range":
+        return None
     
     closest_dist = calcDistance(body["you"], closest)
 
 
     for powerUp in tiles:
+
+        if powerUp["type"] is "weapon-range":
+            return None
 
         dist = calcDistance(body["you"], powerUp)
         
@@ -124,15 +133,15 @@ def fireInRange(body):
     return moveTowardsPoint(body, newPos["x"], newPos["y"])
     
 
+
+
+
 def nothinToDo(body):
-    centerPointX = math.floor(body["mapWidth"] / 2)
-    centerPointY = math.floor(body["mapHeight"] / 2)
-    return moveTowardsPoint(body, centerPointX, centerPointY)
+    return RETREAT
 
 def chooseAction(body):
     if(len(body["fire"]) != 0):
         move = fireInRange(body)
-         
     else:
         move = findPowerUp(body)
     
