@@ -203,7 +203,7 @@ def nothinToDo(body):
 def chooseAction(body):
     if(len(body["fire"]) != 0):
         move = fireInRange(body)
-    elif(calcDistance(body["enemies"][0], body["you"]) <= body["weaponRange"]):
+    elif(calcDistance(body["enemies"][0], body["you"]) <= body["you"]["weaponRange"]):
         move = shootInRange(body)
     else:
         move = findPowerUp(body)
