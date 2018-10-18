@@ -119,6 +119,9 @@ def fireInRange(body):
             closest_dir = "y"
             closest_dist = fire["y"] - bodyX
         
+    if closest_dist == 0:
+        body["fire"] = []
+        return chooseAction(body)
 
         
     newPos[closest_dir] = newPos[closest_dir] - closest_dist
