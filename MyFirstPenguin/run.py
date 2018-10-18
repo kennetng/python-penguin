@@ -136,9 +136,9 @@ def fireInRange(body):
         
         if abs(fire["x"] - bodyX) >= abs(fire["y"] - bodyY) and abs(closest_dist) > abs(fire["y"] - bodyY):
             if fire["y"] - bodyY < 0:
-                move = MOVE_UP[body["you"]["direction"]]
-            else:
                 move = MOVE_DOWN[body["you"]["direction"]]
+            else:
+                move = MOVE_UP[body["you"]["direction"]]
             closest_dist = fire["y"] - bodyY
 
         
