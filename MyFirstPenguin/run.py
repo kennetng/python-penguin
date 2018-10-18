@@ -123,22 +123,27 @@ def fireInRange(body):
 
     if len(fires) == 0:
         return None
-        
+
+    move = None
 
     for fire in fires:
         if abs(fire["x"] - bodyX) <= abs(fire["y"] - bodyY) and abs(closest_dist) > abs(fire["x"] - bodyX):
-            closest_dir = "x"
+            if fire["x"] - bodyX < 0:
+                move = MOVE_RIGHT[body["you"]["direction"]]
+            else:
+                move = MOVE_LEFT[body["you"]["direction"]]
             closest_dist = fire["x"] - bodyX
         
         if abs(fire["x"] - bodyX) >= abs(fire["y"] - bodyY) and abs(closest_dist) > abs(fire["y"] - bodyY):
-            closest_dir = "y"
+            if fire["y"] - bodyY < 0:
+                move = MOVE_DOWN[body["you"]["direction"]]
+            else:
+                move = MOVE_UP[body["you"]["direction"]]
             closest_dist = fire["y"] - bodyY
-        
-        
-    newPos[closest_dir] = newPos[closest_dir] + closest_dist
 
-    return moveTowardsPoint(body, newPos["x"], newPos["y"])
-    
+        
+    return move
+        
 
 def enemiesInRange(body):
     you = body["you"]
