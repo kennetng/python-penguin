@@ -102,7 +102,7 @@ def fireInRange(body):
     
     
     closest_dist = 100
-    closest_dir = ""
+    closest_dir = "x"
 
     fires = body["fire"]
 
@@ -119,10 +119,9 @@ def fireInRange(body):
             closest_dir = "y"
             closest_dist = fire["y"] - bodyX
         
+
         
-    return SHOOT
-        
-    newPos[dir] = newPos[dir] - closest_dist
+    newPos[closest_dir] = newPos[closest_dir] - closest_dist
 
 
     return moveTowardsPoint(body, newPos["x"], newPos["y"])
